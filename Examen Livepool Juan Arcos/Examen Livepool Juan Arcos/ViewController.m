@@ -8,11 +8,13 @@
 
 #import "ViewController.h"
 #import "WebServices.h"
+#import "HistoricalViewController.h"
 
 #define _URL_MASTER @"https://www.liverpool.com.mx/tienda?s=%@&d3106047a194921c01969dfdec083925=json"
 
-@interface ViewController ()<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>{
+@interface ViewController ()<UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, HistoricalViewControllerDelegate>{
     NSMutableArray *arrayData;
+    HistoricalViewController *historical;
 }
 
 
@@ -93,10 +95,54 @@
 
 #pragma mark - UITextFieldDelegate
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(!historical){
+        historical = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"HistoricalViewController"];
+        [self addChildViewController:historical];
+        historical.delegate = self;
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"historicalData"]){
+        [self.view addSubview:historical.view];
+        [historical.view setFrame:CGRectMake(0, textField.frame.size.height + 2, self.view.frame.size.width, self.view.frame.size.height - textField.frame.size.height)];
+        [historical reloadData];
+    }
+    return YES;
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     //Buscar producto
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if(![defaults objectForKey:@"historicalData"]){//No existe, crear
+        NSArray *_arrHistorical = @[textField.text];
+        [defaults setObject:_arrHistorical forKey:@"historicalData"];
+    }else{//Existe agregar nuevo campo
+        NSMutableArray *_arrHistorical = [[NSMutableArray alloc] initWithArray:[defaults objectForKey:@"historicalData"]];
+        [_arrHistorical addObject:textField.text];
+        [defaults setObject:_arrHistorical forKey:@"historicalData"];
+    }
+    
+    [self executeServiceLiverpool:textField.text];
+    
     [textField endEditing:YES];
-    NSString *_url = [NSString stringWithFormat:_URL_MASTER,textField.text ];
+    [historical.view removeFromSuperview];
+    
+    return YES;
+}
+
+#pragma - mark HistoricalViewControllerDelegate
+-(void)valorSeleccionado:(NSString *)campoSeleccionado{
+    [textToSearh setText:campoSeleccionado];
+    [self executeServiceLiverpool:textToSearh.text];
+    [textToSearh endEditing:YES];
+    [historical.view removeFromSuperview];
+}
+
+#pragma mark - utils
+-(void)executeServiceLiverpool:(NSString *)campo{
+    NSString *_url = [NSString stringWithFormat:_URL_MASTER,campo ];
     [WebServices ResponseData:[_url stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding] complete:^(RequestOperationDTO *response) {
         NSLog(@"succes: %d", response.success);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -115,7 +161,6 @@
         });
         
     }];
-    return YES;
 }
 
 @end

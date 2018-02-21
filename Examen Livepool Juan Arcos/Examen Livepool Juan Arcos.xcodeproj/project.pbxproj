@@ -17,6 +17,7 @@
 		9E1D1B9B203CEE6D00369EAB /* Examen_Livepool_Juan_ArcosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D1B9A203CEE6D00369EAB /* Examen_Livepool_Juan_ArcosTests.m */; };
 		9E1D1BA9203CFBB000369EAB /* WebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D1BA6203CFBAF00369EAB /* WebServices.m */; };
 		9E1D1BAA203CFBB000369EAB /* RequestOperationDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D1BA7203CFBAF00369EAB /* RequestOperationDTO.m */; };
+		9E1D1BAD203D139900369EAB /* HistoricalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E1D1BAC203D139900369EAB /* HistoricalViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		9E1D1BA6203CFBAF00369EAB /* WebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServices.m; sourceTree = "<group>"; };
 		9E1D1BA7203CFBAF00369EAB /* RequestOperationDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestOperationDTO.m; sourceTree = "<group>"; };
 		9E1D1BA8203CFBAF00369EAB /* RequestOperationDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestOperationDTO.h; sourceTree = "<group>"; };
+		9E1D1BAB203D139900369EAB /* HistoricalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoricalViewController.h; sourceTree = "<group>"; };
+		9E1D1BAC203D139900369EAB /* HistoricalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoricalViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				9E1D1B8F203CEE6D00369EAB /* Info.plist */,
 				9E1D1B90203CEE6D00369EAB /* main.m */,
 				9E1D1B87203CEE6D00369EAB /* Examen_Livepool_Juan_Arcos.xcdatamodeld */,
+				9E1D1BAB203D139900369EAB /* HistoricalViewController.h */,
+				9E1D1BAC203D139900369EAB /* HistoricalViewController.m */,
 			);
 			path = "Examen Livepool Juan Arcos";
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				9E1D1B83203CEE6D00369EAB /* ViewController.m in Sources */,
 				9E1D1B91203CEE6D00369EAB /* main.m in Sources */,
 				9E1D1B80203CEE6D00369EAB /* AppDelegate.m in Sources */,
+				9E1D1BAD203D139900369EAB /* HistoricalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
