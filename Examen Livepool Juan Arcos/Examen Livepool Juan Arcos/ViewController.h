@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ViewController : UIViewController{
+    
+    
+    __weak IBOutlet UITextField *textToSearh;
+    __weak IBOutlet UITableView *dataTableView;
+    
+}
 
 @end
 
